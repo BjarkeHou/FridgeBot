@@ -1,0 +1,22 @@
+{
+  "name": "fridgebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BjarkeHou/FridgeBot.git"
+  },
+  "author": "BjarkeHou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BjarkeHou/FridgeBot/issues"
+  },
+  "homepage": "https://github.com/BjarkeHou/FridgeBot#readme",
+  "dependencies": {
+    "discord": "^0.8.2"
+  }
+}
