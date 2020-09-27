@@ -129,7 +129,7 @@ module.exports = {
                 return;
             }
 
-            roster[msg.author.username] = [];
+            roster[msg.author.username] = {characters:[]};
             
 
             fs.writeFile(filename, JSON.stringify(roster), (err) => {
