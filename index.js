@@ -21,4 +21,9 @@ client.on('message', msg => {
   	if(command==='roll') {
   		msg.reply(Roll.roll(args))
   	}
+
+  	if(command==='ping') {
+  		const timeTaken = Date.now() - message.createdTimestamp;
+    	message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
+  	}
 });

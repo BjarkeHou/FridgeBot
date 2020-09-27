@@ -11,7 +11,7 @@ module.exports = {
         max = Math.floor(max);
 
         number = Math.floor(Math.random() * (max - min) + min)
-        return 'Roll: **'+number+'**'
+        return 'Roll ['+min+'-'+max+']: **'+number+'**'
     }
 };
 
