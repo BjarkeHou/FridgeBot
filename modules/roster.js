@@ -119,4 +119,24 @@ module.exports = {
             msg.channel.send("You have no character below lvl60 with that name.");
         });
     },
+    register: function(msg) {
+        console.log(msg.author.username);
+        fs.readFile(filename, (err, data) => {
+            if (err) throw err;
+            let roster = JSON.parse(data);
+            if(roster[msg.author.username]) {
+                msg.channel.send("Player already registered.");
+                return;
+            }
+
+            roster[msg.author.username] = [];
+            
+
+            fs.writeFile(filename, JSON.stringify(roster), (err) => {
+                if (err) throw err;
+                console.log('Data written to file');
+                msg.channel.send("Player with username: **"+msg.author.username+"** has been registered.");
+            }); 
+        });
+    },
 };

@@ -29,6 +29,8 @@ client.on('message', msg => {
   			Roster.delete(msg);
   		if(command==='ding')
   			Roster.ding(msg);
+  		if(command==='register')
+  			Roster.register(msg);
   	}
 
   	if(app==='roll') {
