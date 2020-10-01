@@ -3,6 +3,7 @@ const config = require("./config.json");
 
 const Roll = require('./modules/roll.js')
 const Roster = require('./modules/roster.js')
+const WCL = require('./modules/wcl.js')
 
 const prefix = "!"
 
@@ -19,17 +20,22 @@ client.on('message', msg => {
   	const args = commandBody.split(' ');
   	const app = args.shift().toLowerCase();
 
+  	if(msg.content.startsWith('https://classic.warcraftlogs.com/reports/')) {
+  		WCL.info(msg, config.WCL_TOKEN);
+  	}
+
   	if(app==='roster') {
-  		const command = args.shift().toLowerCase();
-  		if(command==='get')
+  		const command = args.shift();
+
+  		if(!command || command.toLowerCase()==='get')
   			Roster.get(msg);
-  		if(command==='add')
+  		else if(command.toLowerCase()==='add')
   			Roster.add(msg);
-  		if(command==='delete')
+  		else if(command.toLowerCase()==='delete')
   			Roster.delete(msg);
-  		if(command==='ding')
+  		else if(command.toLowerCase()==='ding')
   			Roster.ding(msg);
-  		if(command==='register')
+  		else if(command.toLowerCase()==='register')
   			Roster.register(msg);
   	}
 
