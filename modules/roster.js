@@ -36,7 +36,7 @@ module.exports = {
             if (err) throw err;
             let roster = JSON.parse(data);
             if(!roster[msg.author.username]) {
-                msg.channel.send("No player registered with that name. Use `!roster register`");
+                msg.author.send("No player registered with that name. Use `!roster register`");
                 return;
             }
             
@@ -44,9 +44,9 @@ module.exports = {
             console.log(newCharData)
 
             let newChar = {
-                "name":newCharData[0],
-                "class":newCharData[1],
-                "lvl":newCharData[2]
+                name:newCharData[0],
+                class:newCharData[1],
+                lvl:newCharData[2]
             }
 
             roster[msg.author.username].characters.push(newChar);
@@ -54,6 +54,7 @@ module.exports = {
             fs.writeFile(filename, JSON.stringify(roster), (err) => {
                 if (err) throw err;
                 console.log('Data written to file');
+                msg.author.send("**"+newChar.name+"** ["+newChar.class+" - "+newChar.lvl+"] added.");
             });
         });
     },
@@ -63,7 +64,7 @@ module.exports = {
             if (err) throw err;
             let roster = JSON.parse(data);
             if(!roster[msg.author.username]) {
-                msg.channel.send("No player registered with that name. Use `!roster register`");
+                msg.author.send("No player registered with that name. Use `!roster register`");
                 return;
             }
             
@@ -77,12 +78,13 @@ module.exports = {
                     fs.writeFile(filename, JSON.stringify(roster), (err) => {
                         if (err) throw err;
                         console.log('Data written to file');
+                        msg.author.send("**"+nameOfCharToBeDeleted+"** has been deleted.");
                     });
                     return
                 }
             }
 
-            msg.channel.send("You have no character with that name.");
+            msg.author.send("You have no character with that name.");
         });
     },
     ding: function(msg) {
@@ -91,7 +93,7 @@ module.exports = {
             if (err) throw err;
             let roster = JSON.parse(data);
             if(!roster[msg.author.username]) {
-                msg.channel.send("No player registered with that name. Use `!roster register`");
+                msg.author.send("No player registered with that name. Use `!roster register`");
                 return;
             }
             
@@ -116,7 +118,7 @@ module.exports = {
                 }
             }
 
-            msg.channel.send("You have no character below lvl60 with that name.");
+            msg.author.send("You have no character below lvl60 with that name.");
         });
     },
     register: function(msg) {
@@ -125,7 +127,7 @@ module.exports = {
             if (err) throw err;
             let roster = JSON.parse(data);
             if(roster[msg.author.username]) {
-                msg.channel.send("Player already registered.");
+                msg.author.send("Player already registered.");
                 return;
             }
 
@@ -135,7 +137,7 @@ module.exports = {
             fs.writeFile(filename, JSON.stringify(roster), (err) => {
                 if (err) throw err;
                 console.log('Data written to file');
-                msg.channel.send("Player with username: **"+msg.author.username+"** has been registered.");
+                msg.author.send("Player with username: **"+msg.author.username+"** has been registered.");
             }); 
         });
     },
