@@ -29,6 +29,8 @@ client.on('message', msg => {
 
   		if(!command || command.toLowerCase()==='get')
   			Roster.get(msg);
+  		else if(command.toLowerCase()==='help')
+  			Roster.help(msg);
   		else if(command.toLowerCase()==='add')
   			Roster.add(msg);
   		else if(command.toLowerCase()==='delete')

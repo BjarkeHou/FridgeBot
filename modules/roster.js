@@ -5,7 +5,27 @@ const fs = require('fs');
 
 const filename = 'roster.json';
 
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+const CLASSES = ['warrior','warlock','rogue','priest','druid','hunter','shaman','paladin','mage']
+
 module.exports = {
+    help: function(msg) {
+        let response = "";
+
+        response += "**__ROSTER COMMANDS__**\n\n"
+        response += "**__!roster__**\nPrints all users registered and all characters added to each user.\n\n"
+        response += "**__!roster register__**\nRegisters your discord name, so you can start adding characters.\n\n"
+        response += "**__!roster add <character name> <class> <level>__**\nAdds a character to your roster with class and level.\n\n"
+        response += "**__!roster delete <character name>__**\nDeletes said character from your roster.\n\n"
+        response += "**__!roster ding <character name>__**\nIncreases said character level with 1.\n\n"
+        response += "**__!roster help__**\nPrints this message.\n\n"
+
+        msg.author.send(response);
+    },
     get: function(msg) {
         fs.readFile(filename, (err, data) => {
             if (err) throw err;
@@ -41,12 +61,21 @@ module.exports = {
             }
             
             var newCharData = msg.content.split(' ').splice(2)
-            console.log(newCharData)
+
+            if(CLASSES.indexOf(newCharData[1].toLowerCase()) == -1) {
+                msg.author.send("That class does not exist.");
+                return;
+            }
+
+            if(parseInt(newCharData[2]) == NaN) {
+                msg.author.send("Level needs to be a number.");
+                return;
+            }
 
             let newChar = {
-                name:newCharData[0],
-                class:newCharData[1],
-                lvl:newCharData[2]
+                name:capitalize(newCharData[0].toLowerCase()),
+                class:capitalize(newCharData[1].toLowerCase()),
+                lvl:parseInt(newCharData[2])
             }
 
             roster[msg.author.username].characters.push(newChar);
