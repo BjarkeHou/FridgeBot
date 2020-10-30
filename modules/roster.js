@@ -138,9 +138,9 @@ module.exports = {
                         if (err) throw err;
                         console.log('Data written to file');
                         if(roster[msg.author.username].characters[i].lvl == 60) {
-                            msg.reply("@everyone look at this pumper! Gratz, motherfucker!")
+                            msg.reply("@everyone look at this pumper! Gratz with lvl60, motherfucker!")
                         } else {
-                            msg.reply("Gz! Keep pumping!")
+                            msg.reply("Gz with lvl"+roster[msg.author.username].characters[i].lvl+"! Keep pumping!")
                         }
                     });
                     return
