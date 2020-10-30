@@ -25,6 +25,7 @@ module.exports = {
         response += "**__!roster help__**\nPrints this message.\n\n"
 
         msg.author.send(response);
+        msg.delete();
     },
     get: function(msg) {
         fs.readFile(filename, (err, data) => {
