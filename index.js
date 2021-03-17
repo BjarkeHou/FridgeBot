@@ -3,7 +3,7 @@ const config = require("./config.json");
 
 const Roll = require('./modules/roll.js')
 const Roster = require('./modules/roster.js')
-// const WCL = require('./modules/wcl.js')
+const WCL = require('./modules/wcl.js')
 
 const prefix = "!"
 
@@ -54,4 +54,8 @@ client.on('message', msg => {
   		const timeTaken = Date.now() - msg.createdTimestamp;
     	msg.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   	}
+
+    if(app==='log') {
+      WCL.log(msg);
+    }
 });

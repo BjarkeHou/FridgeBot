@@ -15,6 +15,8 @@
   "homepage": "https://github.com/BjarkeHou/FridgeBot#readme",
   "dependencies": {
     "discord": "^0.8.2",
-    "discord.js": "^12.4.1"
+    "discord.js": "^12.4.1",
+    "graphql": "^15.5.0",
+    "node-fetch": "^2.6.1"
   }
 }
